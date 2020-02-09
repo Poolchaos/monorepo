@@ -9,6 +9,8 @@ var inputFile='mock/mock_data.csv';
 
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
+  let cid = req.query.cid;
+
   try {
     Promise
       .resolve()
@@ -20,11 +22,13 @@ router.get('/', async function(req, res, next) {
           .on('data', (row) => {
             data.push(row);
           })
-          .on('end', () => {
+          .on('end', async () => {
             console.log('CSV file successfully processed');
 
             const classifiedPayments = classifyPayments(data);
-            const sortedData = sortOldestToLatest(classifiedPayments);
+            const sortedData = cid ? 
+              await find(classifiedPayments, cid) :
+              await sortOldestToLatest(classifiedPayments);
             res.send(sortedData);
           });
       })
@@ -45,14 +49,18 @@ function sortOldestToLatest(data) {
   }
 }
 
+function find(data, cid) {
+  return data.filter(item => item.client_id === cid);
+}
+
 function classifyPayments(data) {
 
   try {
     data.map((item => {
       let itemDate = moment(item.last_payment_date);
-      let diff = moment().diff(moment(itemDate), 'days');
+      let diff = JSON.parse(moment().diff(moment(itemDate), 'days'));
 
-      item['days_passed'] = diff;
+      item['days_to_sespension'] = 90 - diff < 0 ? 0 : 90 - diff;
       return item;
     }));
 

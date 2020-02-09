@@ -53,7 +53,7 @@ import AsyncComputed from 'vue-async-computed'
 Vue.use(AsyncComputed);
 
 export default {
-  name: 'HelloWorld',
+  name: 'PaymentHistory',
   props: {
     filterText: String
   },
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     retrievePayments: async function(cid) {
-      const baseURI = 'http://localhost:3000/users'
+      const baseURI = 'http://localhost:3000/payments'
       const res = await axios.get(baseURI + (cid ? '?cid=' + cid : ''));
       if (res && res.data) {
         return res.data;

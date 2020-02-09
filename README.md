@@ -1,15 +1,11 @@
 # frontend
 
-cd apps/frontend
+### For the front-end application I made use of Vue located in `apps/frontend`.
 
 ## Project setup
+In the app folder `apps/frontend`, run:
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
 ```
 
 ### Compiles and minifies for production
@@ -17,14 +13,13 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+---
 # api
 
-cd apps/api
+### For the back-end application I made use of ExpressJS located in `apps/api`.
 
 ## Project setup
+In the app folder `apps/api`, run:
 ```
 npm install
 ```

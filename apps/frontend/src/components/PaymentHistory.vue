@@ -73,7 +73,6 @@ export default {
       return [];
     },
     filter: async function(cid) {
-      this.filterText = cid;
       this.payments = await this.retrievePayments(cid);
     }
   }

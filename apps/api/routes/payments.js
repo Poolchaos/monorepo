@@ -58,7 +58,7 @@ function classifyPayments(data) {
   try {
     data.map((item => {
       let itemDate = moment(item.last_payment_date);
-      let diff = JSON.parse(moment().diff(moment(itemDate), 'days'));
+      let diff = JSON.parse(moment('2019/01/15').diff(moment(itemDate), 'days'));
 
       item['days_to_sespension'] = 90 - diff < 0 ? 0 : 90 - diff;
       return item;

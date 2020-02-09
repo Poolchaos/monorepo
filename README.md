@@ -1,3 +1,6 @@
+# Payment History - Monorepo
+## This is a basic monorepo with the FE and BE apps
+
 # frontend
 
 ### For the front-end application I made use of Vue located in `apps/frontend`.
